@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const authroute = require('../backend/routes/authroutes');
-const dataDeletionRoute = require('../backend/routes/datadeletion'); // Import the data deletion route
+const authroute = require('./routes/authroutes');
+const dataDeletionRoute = require('./routes/datadeletion'); // Import the data deletion route
 
 const app = express();
 app.use(cors());
