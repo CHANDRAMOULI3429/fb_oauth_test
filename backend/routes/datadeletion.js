@@ -3,7 +3,7 @@ const crypto = require('crypto'); // Import crypto for signature validation
 const router = express.Router(); // Initialize the router
 
 // Replace with your actual app secret from your Meta developer settings
-const APP_SECRET = 'ee6561a76b4f4545ca30a1cd22c1c315'; // Make sure to secure this
+const APP_SECRET = process.env.FACEBOOK_APP_SECRET; // Use environment variable for security
 
 // Data deletion request callback
 router.post('/data', (req, res) => {
@@ -14,11 +14,10 @@ router.post('/data', (req, res) => {
         return res.status(400).json({ error: 'Invalid signed request.' });
     }
 
-    // Here you would include your logic to delete user data based on the userId
-    const userId = data.user_id;
+    // Logic to delete user data based on userId (Implement your deletion logic here)
 
     // URL to check the status of the deletion request
-    const statusUrl = 'https://www.yourwebsite.com/deletion-status?id=' + userId; // Replace with your actual status URL
+    const statusUrl = `http://facebook-check.onrender.com/deletion-status?id=${data.user_id}`; // Replace with your actual status URL
     const confirmationCode = generateConfirmationCode(); // Generate a unique confirmation code
 
     const responseData = {
