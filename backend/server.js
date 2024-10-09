@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 
+// Try-Catch block for importing routes to handle any missing module errors
+let authroute, dataDeletionRoute;
 try {
-    const authroute = require('./routes/authroutes'); // Make sure the file name and path are correct
-    const dataDeletionRoute = require('./routes/datadeletion'); // Import the data deletion route
+    authroute = require('./routes/authroutes'); // Ensure the correct file name and path
+    dataDeletionRoute = require('./routes/datadeletion'); // Ensure the correct file name and path
     console.log('Routes imported successfully.');
 } catch (error) {
     console.error('Error loading routes:', error.message);
-    process.exit(1); // Exit the process if there is an issue with loading the routes
+    process.exit(1); // Exit the process if routes cannot be loaded
 }
 
 const app = express();
